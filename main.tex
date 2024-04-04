@@ -67,8 +67,7 @@ The only group for which we can study a treatment effect three years before trea
 \subsection{How many never treated groups (or counties) are there?}
 Running a short piece of code and not forgetting to group by the $countyreal$ variable we get 309 never treated counties.
 \subsection{Redo the analysis using the not yet treated group as control group. How do the results compare? Are you surprised (given your answer to the previous question)?}
-At first glance the results seem very similar (see Figure \ref{fig:both_images}). (More analysis is welcomed)
-\begin{figure}[htbp]
+At first glance the results seem very similar (see Figure \ref{fig:both_images}). The by default control group is the never treated groups. Thus, using the not yet treated group could increases the precision of results, as is it the case here (but not very much). 
     \centering
     \begin{subfigure}[b]{0.9\textwidth}
         \includegraphics[width=\textwidth]{media/never_treated.png} % Include first image
@@ -86,7 +85,7 @@ At first glance the results seem very similar (see Figure \ref{fig:both_images})
 \end{figure}
 \subsection{Define the treatment variable D equal to 1 if county g is treated in time t and 0 otherwise, i.e., replace the “...” with the appropriate code in the ExampleDID.R file. Then use the two-way fixed effects estimator to estimate the treatment effect. What do you find? How does your estimate compare to the corresponding estimate(s) obtained using the “did” package?}
 \include{OUTPUT/2wfe}
-By using the plm package we estimated the two-way fixed effects estimator (see Table \ref{2wfe})
+By using the plm package we estimated the two-way fixed effects estimator (see Table \ref{2wfe}). 
 \subsection{Implement the “classical” event study design using the two-way fixed effects estimator. What do you find? How do your estimates compare to the (sets of) estimates obtained using the “did” package?}
 \subsection{Run the twowayfeweights function. What do you find?}
 \begin{figure}[htbp]
@@ -96,4 +95,5 @@ By using the plm package we estimated the two-way fixed effects estimator (see T
         \label{2wfew}
 \end{figure}
 \subsection{How do you interpret your findings in (d) and (f)?}
+The two way fixed effect model estimates a significant negative impact of the treatment on the dependent variable (lemp). However, the results from the two-way fixed effects weights method indicate that out of the 1836 estimated ATTs, 1198 receive a positive weight and 638 receive a negative weight. This suggests diversity in the average treatment effects observed in the sample. 
 \end{document}
