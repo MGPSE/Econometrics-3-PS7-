@@ -21,6 +21,7 @@
 \usepackage{dsfont}
 \usepackage{caption}
 \usepackage{listings}
+\usepackage{subcaption} % for subfigures
 
 \geometry{top=4cm, bottom=4cm, left=4cm, right=4cm}
 \pagestyle{fancy}
@@ -60,6 +61,39 @@ The first term does not depend on $g$. The second is equal to zero, indeed, acco
 $$\mathbb{E}\left(\varepsilon_{g, t}\right) = \mathbb{E}\big(\mathbb{E}(\varepsilon_{g, t}|\alpha_g, D_{g, t})\big) = 0$$
 and similarly for $t-1$. We have proved the expected result.
 \setcounter{section}{2}
-\section{Coding part:}
-
+\section{Coding part}
+\subsection{Note that the treatment effect estimate for group 2007 and time 2004 is equal to the event study estimate for event time -3. Similarly, note that the treatment effect estimate for group 2004 and time 2007 is equal to the event study estimate for event time 3. Why is this so?}
+The only group for which we can study a treatment effect three years before treatment is the 2007 group. Therefore the -3 parameter in the event study is identical as the treatment effect for group 2007 in 2004. The same goes for group 2004 in 2007, it is the only group for which we can evaluate a treatment effect three years after treatment.
+\subsection{How many never treated groups (or counties) are there?}
+Running a short piece of code and not forgetting to group by the $countyreal$ variable we get 309 never treated counties.
+\subsection{Redo the analysis using the not yet treated group as control group. How do the results compare? Are you surprised (given your answer to the previous question)?}
+At first glance the results seem very similar (see Figure \ref{fig:both_images}). (More analysis is welcomed)
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.9\textwidth}
+        \includegraphics[width=\textwidth]{media/never_treated.png} % Include first image
+        \caption{Never Treated Estimation}
+        \label{fig:img1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.9\textwidth}
+        \includegraphics[width=\textwidth]{media/not_yet_treated.png} % Include second image
+        \caption{Not Yet Treated}
+        \label{fig:img2}
+    \end{subfigure}
+    \caption{Did Estimates}
+    \label{fig:both_images}
+\end{figure}
+\subsection{Define the treatment variable D equal to 1 if county g is treated in time t and 0 otherwise, i.e., replace the “...” with the appropriate code in the ExampleDID.R file. Then use the two-way fixed effects estimator to estimate the treatment effect. What do you find? How does your estimate compare to the corresponding estimate(s) obtained using the “did” package?}
+\include{OUTPUT/2wfe}
+By using the plm package we estimated the two-way fixed effects estimator (see Table \ref{2wfe})
+\subsection{Implement the “classical” event study design using the two-way fixed effects estimator. What do you find? How do your estimates compare to the (sets of) estimates obtained using the “did” package?}
+\subsection{Run the twowayfeweights function. What do you find?}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{media/2wfeg.png}
+        \caption{twowayfeweights}
+        \label{2wfew}
+\end{figure}
+\subsection{How do you interpret your findings in (d) and (f)?}
 \end{document}
