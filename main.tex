@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{parskip}
+\usepackage{forest}
+\usepackage{tikz}
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{alphalph}
+\usepackage{cancel}
+\usepackage{textgreek}
+\usepackage{titlesec}
+\usepackage{dsfont}
+\usepackage{caption}
+\usepackage{listings}
+
+\geometry{top=4cm, bottom=4cm, left=4cm, right=4cm}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Pierre Pili $\cdot$ Marie Gardie $\cdot$ Isée Biglietti}
+\lhead{Econometrics 3}
+\cfoot{\thepage}
+\setlength{\headheight}{14.49998pt}
+\addtolength{\topmargin}{-2.49998pt}
+
+\titleformat{\section}{\small\bfseries}{\thesection}{1em}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\alph{subsubsection}}
+
+\title{Problem Set 7}
+\author{PILI Pierre $\cdot$ GARDIE Marie $\cdot$ BIGLIETTI Isée}
+\date{\today}
+
+% Redéfinir le format de numérotation des sous-sections
+\titleformat{\subsection}
+  {\normalfont\small\bfseries}{\alph{subsection})}{1em}{}
+  
+\begin{document}
+\maketitle
+\renewcommand{\thesubsection}{\alph{subsection}}
+
+\section{Show that, under the assumption of homogeneous treatment effects, Wooldridge’s Assumption $FE_1$ implies the parallel trends assumption does not vary with g (for any $t \geq 2$).}
+We compute the last expression and will make use of the different assumptions along the way to derive an expression which does not depend on $g$. The homogeneity of the treatment and the linear model yields
+\begin{align*}
+    \mathbb{E}\left(Y_{g, t}(0) - Y_{g, t-1}(0)\right) &= \mathbb{E}\left(\alpha_g + \lambda_t + \beta \cdot  0 + \varepsilon_{g, t} - \alpha_g - \lambda_{t-1} - \beta \cdot 0 - \varepsilon_{g, t-1}\right) 
+\end{align*}
+which simplifies to
+\begin{align*}
+    \mathbb{E}\left(Y_{g, t}(0) - Y_{g, t-1}(0)\right) &= \mathbb{E}\left(\lambda_t - \lambda_{t-1}\right)  + \mathbb{E}\left(\varepsilon_{g, t} - \varepsilon_{g, t-1}\right) 
+\end{align*}
+The first term does not depend on $g$. The second is equal to zero, indeed, according to the law of iterated expectations,
+$$\mathbb{E}\left(\varepsilon_{g, t}\right) = \mathbb{E}\big(\mathbb{E}(\varepsilon_{g, t}|\alpha_g, D_{g, t})\big) = 0$$
+and similarly for $t-1$. We have proved the expected result.
+\setcounter{section}{2}
+\section{Coding part:}
+
+\end{document}
