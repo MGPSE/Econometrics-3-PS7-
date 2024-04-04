@@ -50,7 +50,7 @@ out_nyt <- att_gt(yname = "lemp",
 mpdta <- mpdta %>%
     mutate(D = ifelse(first.treat <= year, 1, 0))
 
-mpdta_pdf <- pdata.frame(mpdta, index = first.treat)
+mpdta_pdf <- pdata.frame(mpdta, index = c("countyreal", "year"))
 
 twfe <- plm(lemp ~ D, data = mpdta)
 
